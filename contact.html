@@ -23,15 +23,20 @@
           <li>Address: New Dariyapur Colony, Suryamandir, Khairatali, Patna - 804453, Bihar</li>
         </ul>
       </div>
-      <form class="panel form reveal" onsubmit="return false;">
+      <form class="panel form reveal" action="https://formsubmit.co/support@kirosys.in" method="POST">
+        <input type="hidden" name="_subject" value="New Kirosys website inquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://kirosys.in/thanks.html">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="form-honey">
         <div class="form-row">
-          <label>First Name<input type="text" placeholder="Jane"></label>
-          <label>Last Name<input type="text" placeholder="Smith"></label>
+          <label>First Name<input type="text" name="first_name" placeholder="Jane" autocomplete="given-name" required></label>
+          <label>Last Name<input type="text" name="last_name" placeholder="Smith" autocomplete="family-name" required></label>
         </div>
-        <label>Work Email<input type="email" placeholder="jane@company.com"></label>
+        <label>Work Email<input type="email" name="email" placeholder="jane@company.com" autocomplete="email" required></label>
         <label>Service
-          <select>
-            <option>Select a service...</option>
+          <select name="service" required>
+            <option value="">Select a service...</option>
             <option>Software Development</option>
             <option>AI Implementation</option>
             <option>Cloud Services</option>
@@ -40,7 +45,7 @@
             <option>Staffing &amp; Resources</option>
           </select>
         </label>
-        <label>Project Details<textarea placeholder="Brief overview, goals, timeline, and any technical context..."></textarea></label>
+        <label>Project Details<textarea name="message" placeholder="Brief overview, goals, timeline, and any technical context..." required></textarea></label>
         <button class="btn primary" type="submit">Send Message</button>
       </form>
     </div>

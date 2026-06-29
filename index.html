@@ -601,6 +601,14 @@
     .form-input::placeholder, .form-textarea::placeholder { color: var(--text-3); }
     .form-textarea { resize: vertical; min-height: 130px; }
     .form-select option { background: var(--card); }
+    .form-honey {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
 
     /* ──────────────── FOOTER ──────────────── */
     footer {
@@ -1591,24 +1599,29 @@
         </div>
       </div>
 
-      <form class="contact-form reveal reveal-d2" onsubmit="return false;">
+      <form class="contact-form reveal reveal-d2" action="https://formsubmit.co/support@kirosys.in" method="POST">
+        <input type="hidden" name="_subject" value="New Kirosys website inquiry">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://kirosys.in/thanks.html">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="form-honey">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label" for="fname">First Name</label>
-            <input class="form-input" type="text" id="fname" placeholder="Jane">
+            <input class="form-input" type="text" id="fname" name="first_name" placeholder="Jane" autocomplete="given-name" required>
           </div>
           <div class="form-group">
             <label class="form-label" for="lname">Last Name</label>
-            <input class="form-input" type="text" id="lname" placeholder="Smith">
+            <input class="form-input" type="text" id="lname" name="last_name" placeholder="Smith" autocomplete="family-name" required>
           </div>
         </div>
         <div class="form-group">
           <label class="form-label" for="email">Work Email</label>
-          <input class="form-input" type="email" id="email" placeholder="jane@company.com">
+          <input class="form-input" type="email" id="email" name="email" placeholder="jane@company.com" autocomplete="email" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="service">Service of Interest</label>
-          <select class="form-select" id="service">
+          <select class="form-select" id="service" name="service" required>
             <option value="">Select a service...</option>
             <option>Software Development</option>
             <option>Game Development</option>
@@ -1622,7 +1635,7 @@
         </div>
         <div class="form-group">
           <label class="form-label" for="message">Tell Us About Your Project</label>
-          <textarea class="form-textarea" id="message" placeholder="Brief overview, timeline, or key questions..."></textarea>
+          <textarea class="form-textarea" id="message" name="message" placeholder="Brief overview, timeline, or key questions..." required></textarea>
         </div>
         <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Send Message
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
