@@ -501,6 +501,75 @@
     }
     .stack-pill:hover { border-color: var(--teal-border); color: var(--teal); background: var(--teal-dim); }
 
+    /* ──────────────── REVIEWS ──────────────── */
+    .reviews-section {
+      background:
+        linear-gradient(180deg, rgba(2,13,31,0.98), rgba(7,22,40,0.88)),
+        radial-gradient(circle at 18% 20%, rgba(0,200,168,0.12), transparent 30rem);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .reviews-head {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 3rem;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(280px, 1fr));
+      gap: 1px;
+      overflow-x: auto;
+      background: var(--border);
+      border: 1px solid var(--border);
+      scrollbar-width: thin;
+      scrollbar-color: var(--teal) transparent;
+    }
+    .review-card {
+      min-height: 280px;
+      padding: 1.75rem;
+      background:
+        radial-gradient(circle at var(--card-x, 50%) var(--card-y, 0%), rgba(0,200,168,0.12), transparent 14rem),
+        linear-gradient(145deg, rgba(12,31,56,0.95), rgba(2,13,31,0.9));
+      position: relative;
+      overflow: hidden;
+    }
+    .review-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--amber));
+    }
+    .review-stars {
+      color: var(--amber);
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      margin-bottom: 1.15rem;
+    }
+    .review-quote {
+      color: var(--text-1);
+      font-size: 0.98rem;
+      line-height: 1.68;
+      margin-bottom: 1.5rem;
+    }
+    .review-author {
+      color: var(--text-2);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .review-product {
+      color: var(--teal);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
     /* ──────────────── CONTACT ──────────────── */
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .contact-info { padding-top: 0.5rem; }
@@ -574,6 +643,7 @@
       .prod-card.feat { grid-row: auto; border-right: none; border-bottom: 1px solid var(--border); }
       .cloud-grid { grid-template-columns: 1fr; }
       .process-strip { grid-template-columns: repeat(2,1fr); }
+      .reviews-head { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
@@ -582,14 +652,415 @@
       .reveal { opacity: 1; transform: none; transition: none; }
       .marquee-track { animation: none; }
     }
+
+    /* ──────────────── FUTURISTIC POLISH ──────────────── */
+    body {
+      background:
+        radial-gradient(circle at 14% 18%, rgba(0,200,168,0.16), transparent 28rem),
+        radial-gradient(circle at 86% 8%, rgba(232,160,32,0.11), transparent 24rem),
+        radial-gradient(circle at 82% 62%, rgba(155,127,234,0.13), transparent 26rem),
+        linear-gradient(180deg, #020D1F 0%, #041326 48%, #020D1F 100%);
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.72), rgba(0,0,0,0.12) 42%, rgba(0,0,0,0.5));
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 7px);
+      opacity: 0.2;
+      mix-blend-mode: screen;
+    }
+    .cursor-aura {
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      left: -160px;
+      top: -160px;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0,200,168,0.14), transparent 68%);
+      opacity: 0;
+      transform: translate3d(var(--mx, 50vw), var(--my, 50vh), 0);
+      transition: opacity 0.3s ease;
+    }
+    body.has-pointer .cursor-aura { opacity: 1; }
+    nav {
+      background: linear-gradient(180deg, rgba(2,13,31,0.78), rgba(2,13,31,0));
+    }
+    nav.scrolled {
+      box-shadow: 0 18px 70px rgba(0,0,0,0.28);
+    }
+    .logo-icon { filter: drop-shadow(0 0 18px rgba(0,200,168,0.22)); }
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a:not(.nav-cta)::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.55rem;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      opacity: 0;
+      transform: scaleX(0.4);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-links a:not(.nav-cta):hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+    .hero {
+      isolation: isolate;
+      min-height: 94vh;
+    }
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero::before {
+      z-index: 0;
+      background:
+        linear-gradient(115deg, rgba(2,13,31,0.96) 0%, rgba(2,13,31,0.7) 48%, rgba(2,13,31,0.2) 100%),
+        radial-gradient(circle at 74% 45%, rgba(0,200,168,0.18), transparent 32rem),
+        linear-gradient(90deg, transparent 0 49.85%, rgba(0,200,168,0.22) 50%, transparent 50.15% 100%);
+    }
+    .hero::after {
+      z-index: 1;
+      background: linear-gradient(180deg, transparent 0%, rgba(2,13,31,0.88) 96%);
+    }
+    #hero-canvas {
+      z-index: 0;
+      opacity: 0.82;
+    }
+    .hero-left {
+      position: relative;
+    }
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      left: -1.25rem;
+      top: 0.4rem;
+      bottom: 0.25rem;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(0,200,168,0.55), transparent);
+    }
+    .hero-title {
+      text-shadow: 0 18px 70px rgba(0,0,0,0.36);
+    }
+    .hero-title .t-teal,
+    .hero-title .t-amber {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-title .t-teal::after,
+    .hero-title .t-amber::after {
+      content: attr(data-glitch);
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(0);
+      animation: glitchText 5.2s infinite;
+    }
+    .hero-title .t-teal::after { color: rgba(0,229,196,0.55); }
+    .hero-title .t-amber::after { color: rgba(232,160,32,0.42); animation-delay: 0.9s; }
+    @keyframes glitchText {
+      0%, 88%, 100% { opacity: 0; transform: translateX(0); clip-path: inset(0 0 0 0); }
+      90% { opacity: 0.8; transform: translateX(3px); clip-path: inset(8% 0 68% 0); }
+      92% { opacity: 0.45; transform: translateX(-4px); clip-path: inset(58% 0 18% 0); }
+      94% { opacity: 0.55; transform: translateX(2px); clip-path: inset(32% 0 42% 0); }
+    }
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: -1rem 0 2rem;
+    }
+    .proof-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.72rem;
+      color: var(--text-2);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(7,22,40,0.58);
+      backdrop-filter: blur(14px);
+      border-radius: 3px;
+    }
+    .proof-chip::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 14px var(--teal);
+    }
+    .btn-primary {
+      box-shadow: 0 12px 34px rgba(0,200,168,0.25);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 18px 48px rgba(0,200,168,0.32);
+    }
+    .hero-viz {
+      perspective: 1000px;
+    }
+    .viz-console {
+      position: relative;
+      width: min(100%, 530px);
+      min-height: 520px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background:
+        linear-gradient(140deg, rgba(12,31,56,0.78), rgba(2,13,31,0.38)),
+        linear-gradient(transparent 0 49%, rgba(0,200,168,0.08) 50%, transparent 51% 100%);
+      background-size: auto, 100% 18px;
+      border-radius: 6px;
+      box-shadow:
+        0 40px 110px rgba(0,0,0,0.34),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        inset 0 0 80px rgba(0,200,168,0.04);
+      transform: rotateX(4deg) rotateY(-8deg);
+      animation: consoleFloat 7s ease-in-out infinite;
+      overflow: hidden;
+    }
+    .viz-console::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(120deg, transparent 8%, rgba(0,200,168,0.18), transparent 34%, rgba(232,160,32,0.12), transparent 62%);
+      transform: translateX(-80%);
+      animation: consoleSweep 6.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .viz-console::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(0,200,168,0.16);
+      border-radius: 6px;
+      pointer-events: none;
+    }
+    .console-topbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-2);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .console-lights {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .console-lights span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 14px rgba(0,200,168,0.68);
+    }
+    .console-lights span:nth-child(2) { background: var(--amber); box-shadow: 0 0 14px rgba(232,160,32,0.58); }
+    .console-lights span:nth-child(3) { background: var(--purple); box-shadow: 0 0 14px rgba(155,127,234,0.58); }
+    .orbital-wrap {
+      margin: 0 auto;
+      transform: scale(0.86);
+    }
+    .console-panel {
+      position: absolute;
+      z-index: 3;
+      right: 1rem;
+      bottom: 1rem;
+      left: 1rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .console-readout {
+      min-height: 92px;
+      padding: 1rem;
+      background: rgba(2,13,31,0.82);
+      backdrop-filter: blur(16px);
+    }
+    .readout-label {
+      color: var(--text-3);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .readout-value {
+      color: var(--text-1);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .readout-value strong {
+      color: var(--teal);
+      font-weight: 700;
+    }
+    @keyframes consoleFloat {
+      0%, 100% { transform: rotateX(4deg) rotateY(-8deg) translateY(0); }
+      50% { transform: rotateX(2deg) rotateY(-5deg) translateY(-12px); }
+    }
+    @keyframes consoleSweep {
+      0%, 32% { transform: translateX(-92%); opacity: 0; }
+      46% { opacity: 1; }
+      68%, 100% { transform: translateX(92%); opacity: 0; }
+    }
+    .stat-item,
+    .svc-card,
+    .prod-card,
+    .cloud-card,
+    .process-step,
+    .stack-pill,
+    .contact-form {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.045);
+    }
+    .svc-card,
+    .prod-card,
+    .cloud-card,
+    .process-step {
+      transform-style: preserve-3d;
+    }
+    .svc-card:hover,
+    .prod-card:hover,
+    .cloud-card:hover,
+    .process-step:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .svc-card::before,
+    .prod-card::before,
+    .cloud-card::before,
+    .process-step::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at var(--card-x, 50%) var(--card-y, 0%), rgba(0,200,168,0.14), transparent 17rem);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .svc-card:hover::before,
+    .prod-card:hover::before,
+    .cloud-card:hover::before,
+    .process-step:hover::after {
+      opacity: 1;
+    }
+    .prod-visual,
+    .about-img-wrap,
+    .contact-form {
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.22);
+    }
+    .products-section,
+    .about-section {
+      background:
+        linear-gradient(180deg, rgba(7,22,40,0.92), rgba(4,17,33,0.94)),
+        radial-gradient(circle at 20% 20%, rgba(155,127,234,0.11), transparent 30rem);
+    }
+    .cloud-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 0 18%, rgba(0,200,168,0.04) 18% 18.2%, transparent 18.2% 100%),
+        linear-gradient(60deg, transparent 0 68%, rgba(232,160,32,0.04) 68% 68.2%, transparent 68.2% 100%);
+      background-size: 220px 220px;
+    }
+    .stack-pill {
+      position: relative;
+      overflow: hidden;
+    }
+    .stack-pill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, transparent, rgba(255,255,255,0.12), transparent);
+      transform: translateX(-130%);
+      transition: transform 0.55s;
+    }
+    .stack-pill:hover::after {
+      transform: translateX(130%);
+    }
+    .contact-form {
+      padding: 1.25rem;
+      background:
+        linear-gradient(145deg, rgba(12,31,56,0.9), rgba(7,22,40,0.68)),
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: auto, 100% 46px;
+      border-radius: 6px;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      box-shadow: 0 0 0 3px rgba(0,200,168,0.11), 0 0 28px rgba(0,200,168,0.09);
+    }
+    @media (max-width: 1100px) {
+      .hero-viz { display: flex; }
+      .viz-console { min-height: 440px; transform: none; animation: none; }
+      .orbital-wrap { transform: scale(0.76); }
+    }
+    @media (max-width: 760px) {
+      .hero { min-height: auto; }
+      .hero-inner { padding-top: 4.5rem; gap: 1.5rem; }
+      .hero-left::before { display: none; }
+      .hero-proof { margin-top: -0.7rem; }
+      .viz-console { min-height: 390px; }
+      .orbital-wrap { transform: scale(0.62); transform-origin: top center; }
+      .console-panel { grid-template-columns: 1fr; }
+      .console-readout { min-height: 70px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .viz-console,
+      .viz-console::before,
+      .hero-title .t-teal::after,
+      .hero-title .t-amber::after {
+        animation: none;
+      }
+      .cursor-aura { display: none; }
+    }
   </style>
 </head>
 <body>
+<div class="cursor-aura" aria-hidden="true"></div>
 
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav id="main-nav">
   <div class="nav-inner">
-    <a href="#" class="logo">
+    <a href="index.html" class="logo">
       <svg class="logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="40" height="40" rx="6" fill="#020D1F"/>
         <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="5.5" stroke="#00C8A8" stroke-opacity="0.25" stroke-width="1.5"/>
@@ -602,11 +1073,11 @@
       <span class="logo-text">KIRO<span>SYS</span></span>
     </a>
     <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#products">Products</a></li>
-      <li><a href="#cloud">Cloud</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="cloud.html">Cloud</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="nav-cta">Get In Touch</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -615,11 +1086,11 @@
 </nav>
 
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#services" onclick="closeMobileMenu()">Services</a>
-  <a href="#products" onclick="closeMobileMenu()">Products</a>
-  <a href="#cloud" onclick="closeMobileMenu()">Cloud</a>
-  <a href="#about" onclick="closeMobileMenu()">About</a>
-  <a href="#contact" onclick="closeMobileMenu()">Get In Touch</a>
+  <a href="services.html" onclick="closeMobileMenu()">Services</a>
+  <a href="products.html" onclick="closeMobileMenu()">Products</a>
+  <a href="cloud.html" onclick="closeMobileMenu()">Cloud</a>
+  <a href="about.html" onclick="closeMobileMenu()">About</a>
+  <a href="contact.html" onclick="closeMobileMenu()">Get In Touch</a>
 </div>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -630,27 +1101,48 @@
       <div class="hero-eyebrow"><span></span>Global Technology Company</div>
       <h1 class="hero-title">
         <span style="display:block">Building</span>
-        <span style="display:block" class="t-teal">Software</span>
+        <span style="display:block" class="t-teal" data-glitch="Software">Software</span>
         <span style="display:block">That</span>
-        <span style="display:block" class="t-amber">Scales.</span>
+        <span style="display:block" class="t-amber" data-glitch="Scales.">Scales.</span>
       </h1>
       <p class="hero-desc">
         Kirosys engineers high-performance software, AI systems, cloud infrastructure, and immersive games for enterprises and startups worldwide.
       </p>
+      <div class="hero-proof" aria-label="Kirosys delivery strengths">
+        <span class="proof-chip">AI Native</span>
+        <span class="proof-chip">Cloud Hardened</span>
+        <span class="proof-chip">Product Teams</span>
+      </div>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Start a Project
+        <a href="contact.html" class="btn-primary">Start a Project
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="#products" class="btn-ghost">View Our Work</a>
+        <a href="products.html" class="btn-ghost">View Our Work</a>
       </div>
     </div>
     <div class="hero-viz">
-      <div class="orbital-wrap" id="orbital-wrap">
-        <div class="orb-ring orb-ring-1"></div>
-        <div class="orb-ring orb-ring-2"></div>
-        <div class="orb-ring orb-ring-3"></div>
-        <div class="orb-ring orb-ring-4"></div>
-        <div class="orb-core"><span class="orb-core-letter">K</span></div>
+      <div class="viz-console">
+        <div class="console-topbar">
+          <span>Kirosys Systems Grid</span>
+          <span class="console-lights"><span></span><span></span><span></span></span>
+        </div>
+        <div class="orbital-wrap" id="orbital-wrap">
+          <div class="orb-ring orb-ring-1"></div>
+          <div class="orb-ring orb-ring-2"></div>
+          <div class="orb-ring orb-ring-3"></div>
+          <div class="orb-ring orb-ring-4"></div>
+          <div class="orb-core"><span class="orb-core-letter">K</span></div>
+        </div>
+        <div class="console-panel">
+          <div class="console-readout">
+            <div class="readout-label">Active Build Pipeline</div>
+            <div class="readout-value" id="pipeline-readout"><strong>deploy</strong> --region global --zero-downtime</div>
+          </div>
+          <div class="console-readout">
+            <div class="readout-label">System Status</div>
+            <div class="readout-value"><strong>99.9%</strong> uptime<br><strong>24/7</strong> response</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -808,7 +1300,7 @@
         <span class="prod-tag tag-flagship">Flagship App</span>
         <div class="prod-name">JiVault</div>
         <p class="prod-desc">A professional-grade personal finance and secure document vault application. JiVault gives individuals and businesses a single encrypted hub for sensitive financial data, contracts, and identity documents — with zero-knowledge architecture and enterprise-level access controls.</p>
-        <a href="#" class="prod-link">Learn More
+        <a href="products.html" class="prod-link">Learn More
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <div class="prod-visual">
@@ -820,7 +1312,7 @@
         <span class="prod-tag tag-web">Interview Platform</span>
         <div class="prod-name">JiQuest</div>
         <p class="prod-desc">An AI-powered interview preparation platform with curated question banks, mock sessions, and real-time performance analytics. Trusted by candidates targeting top-tier tech roles.</p>
-        <a href="#" class="prod-link">Explore
+        <a href="https://www.jiquest.com/" class="prod-link" target="_blank" rel="noopener noreferrer">Explore
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <div class="prod-visual">
@@ -832,7 +1324,7 @@
         <span class="prod-tag tag-game">Mobile Game</span>
         <div class="prod-name">Kitty Gaming</div>
         <p class="prod-desc">A vibrant, physics-driven mobile title with fast-paced action gameplay, an addictive progression loop, and global leaderboards across iOS and Android.</p>
-        <a href="#" class="prod-link">View Game
+        <a href="https://play.google.com/store/apps/details?id=com.kittygaming.kitty_gaming" class="prod-link" target="_blank" rel="noopener noreferrer">View Game
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -841,7 +1333,7 @@
         <span class="prod-tag tag-game">Strategy Game</span>
         <div class="prod-name">Battle Brain</div>
         <p class="prod-desc">A competitive real-time strategy game blending quick thinking with tactical depth. Ranked multiplayer, seasonal events, and a growing esports community.</p>
-        <a href="#" class="prod-link">View Game
+        <a href="https://play.google.com/store/apps/details?id=com.brainbattle.brain_battle" class="prod-link" target="_blank" rel="noopener noreferrer">View Game
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -850,11 +1342,68 @@
         <span class="prod-tag tag-game">Arcade Game</span>
         <div class="prod-name">Arkade</div>
         <p class="prod-desc">A modern arcade experience that captures the energy of classic gaming with contemporary production quality. Multiple game modes, unlockable content, and collaborative co-op mechanics.</p>
-        <a href="#" class="prod-link">View Game
+        <a href="https://play.google.com/store/apps/details?id=com.myappscart.gamevault" class="prod-link" target="_blank" rel="noopener noreferrer">View Game
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ REVIEWS ═══════════════ -->
+<section class="reviews-section">
+  <div class="container">
+    <div class="reviews-head reveal">
+      <div>
+        <div class="sec-eyebrow"><span></span>Customer Reviews</div>
+        <h2 class="sec-title">Happy users and client teams</h2>
+      </div>
+      <p class="sec-sub">Feedback from people using Kirosys-built products and teams that trusted us with critical software delivery.</p>
+    </div>
+    <div class="reviews-grid reveal">
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"JiQuest made interview practice feel structured instead of stressful. The mock sessions and progress feedback helped me focus on the exact areas I needed to improve."</p>
+        <div class="review-author">Aarav Mehta, Software Engineer</div>
+        <div class="review-product">JiQuest</div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"The team delivered a clean, fast, and secure product experience. Communication was direct, timelines were realistic, and every release felt carefully tested."</p>
+        <div class="review-author">Priya Sharma, Product Founder</div>
+        <div class="review-product">Product Engineering</div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"Kitty Gaming is simple to start and surprisingly addictive. The controls feel smooth, the levels are fun, and the game keeps giving you a reason to come back."</p>
+        <div class="review-author">Nisha Verma, Mobile Player</div>
+        <div class="review-product">Kitty Gaming</div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"Battle Brain has the kind of quick decision-making loop I like. It is competitive, polished, and easy to recommend to friends who enjoy strategy games."</p>
+        <div class="review-author">Rohan Sinha, Strategy Gamer</div>
+        <div class="review-product">Battle Brain</div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"Our cloud migration was handled with a lot of discipline. Kirosys reduced deployment friction, improved monitoring, and gave us a setup our internal team can actually own."</p>
+        <div class="review-author">Siddharth Rao, CTO</div>
+        <div class="review-product">Cloud Services</div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"The finance and document workflow felt thoughtfully designed. It gave our team one place to organize sensitive records without making the experience complicated."</p>
+        <div class="review-author">Ananya Iyer, Operations Lead</div>
+        <div class="review-product">JiVault</div>
+      </article>
+      <article class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-quote">"GameVault has a clean experience and the performance feels solid on mobile. The app is easy to navigate, responsive, and built with good attention to detail."</p>
+        <div class="review-author">Karan Malhotra, App User</div>
+        <div class="review-product">GameVault</div>
+      </article>
     </div>
   </div>
 </section>
@@ -1014,7 +1563,7 @@
             </div>
             <div>
               <div class="ci-label">Email</div>
-              <div class="ci-val">support@kirosys.in</div>
+              <div class="ci-val">contact@kirosys.com</div>
             </div>
           </div>
           <div class="contact-item">
@@ -1087,18 +1636,58 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <span class="footer-copy">© 2026 Kirosys Technologies Pvt. Ltd. All rights reserved.</span>
+      <span class="footer-copy">&copy; 2026 Kirosys Technologies Pvt. Ltd. All rights reserved.</span>
       <ul class="footer-links">
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </div>
 </footer>
 
 <script>
+/* ─── Futuristic interaction polish ─── */
+(function() {
+  const aura = document.querySelector('.cursor-aura');
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (aura && finePointer) {
+    document.body.classList.add('has-pointer');
+    window.addEventListener('pointermove', e => {
+      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+      document.documentElement.style.setProperty('--my', e.clientY + 'px');
+    }, { passive: true });
+  }
+
+  const readout = document.getElementById('pipeline-readout');
+  if (readout) {
+    const commands = [
+      '<strong>deploy</strong> --region global --zero-downtime',
+      '<strong>train</strong> --model vision --edge-ready',
+      '<strong>scale</strong> --services api,web,worker',
+      '<strong>secure</strong> --vault encrypted --audit-pass'
+    ];
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % commands.length;
+      readout.style.opacity = '0';
+      setTimeout(() => {
+        readout.innerHTML = commands[i];
+        readout.style.opacity = '1';
+      }, 180);
+    }, 2400);
+  }
+
+  document.querySelectorAll('.svc-card, .prod-card, .cloud-card, .process-step, .review-card').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--card-x', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--card-y', (e.clientY - rect.top) + 'px');
+    }, { passive: true });
+  });
+})();
+
 /* ─── Mobile nav ─── */
 function closeMobileMenu() {
   document.getElementById('mobile-menu').classList.remove('open');
